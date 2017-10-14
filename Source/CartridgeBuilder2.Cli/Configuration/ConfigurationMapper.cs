@@ -32,7 +32,7 @@ namespace CartridgeBuilder2.Cli.Configuration
                     Bank = p.Bank,
                     Data = _fileSystem.ReadAllBytes(p.Path),
                     Offset = p.Offset,
-                    WrapStrategy = p.Usage
+                    WrapStrategy = p.WrapStrategy
                 }).ToList<IPatch>(),
                 Tables = config.Tables.Select(t => new Table
                 {

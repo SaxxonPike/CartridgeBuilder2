@@ -48,10 +48,7 @@ namespace CartridgeBuilder2.Cli.Test.Integration
                         Length = 0x20
                     }
                 },
-                OutputFile = outputName,
-                Hardware = 0x0020,
-                Exrom = true,
-                Game = false
+                OutputFile = outputName
             });
 
             // Act.

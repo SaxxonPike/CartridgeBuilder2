@@ -130,7 +130,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
 
             // Assert.
             output.Patches.Should().HaveCount(1);
-            output.Patches[0].Usage.Should().Be(WrapStrategy.Both);
+            output.Patches[0].WrapStrategy.Should().Be(WrapStrategy.Both);
         }
 
         [Test]
@@ -159,7 +159,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             output.Patches[0].Bank.Should().Be(bank);
             output.Patches[0].Offset.Should().Be(offset);
             output.Patches[0].Path.Should().Be(path);
-            output.Patches[0].Usage.Should().Be(usage);
+            output.Patches[0].WrapStrategy.Should().Be(usage);
         }
 
         [Test]

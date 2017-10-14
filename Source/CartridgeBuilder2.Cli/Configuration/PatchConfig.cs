@@ -11,7 +11,7 @@ namespace CartridgeBuilder2.Cli.Configuration
         [JsonRequired]
         public int Offset { get; set; }
 
-        public WrapStrategy Usage { get; set; }
+        public WrapStrategy WrapStrategy { get; set; }
 
         [JsonRequired]
         public string Path { get; set; }
