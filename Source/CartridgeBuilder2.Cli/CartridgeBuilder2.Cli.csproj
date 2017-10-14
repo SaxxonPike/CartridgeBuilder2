@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <TargetFrameworks>netcoreapp1.1;net461</TargetFrameworks>
+    <ApplicationIcon />
+    <OutputTypeEx>exe</OutputTypeEx>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CartridgeBuilder2.Lib\CartridgeBuilder2.Lib.csproj" />
+  </ItemGroup>
+</Project>
