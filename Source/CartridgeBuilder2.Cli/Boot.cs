@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using Autofac;
 using CartridgeBuilder2.Lib.Infrastructure;
 
@@ -30,8 +31,10 @@ namespace CartridgeBuilder2.Cli
         private static IContainer BuildContainer()
         {
             var builder = new ContainerBuilder();
+            builder.RegisterInstance(Console.Out);
             builder.RegisterModule<InfrastructureAutofacModule>();
             builder.RegisterModule<AppAutofacModule>();
+            
             return builder.Build();
         }
     }
