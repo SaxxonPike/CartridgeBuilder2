@@ -36,7 +36,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             output.Files.Should().BeEmpty();
             output.Patches.Should().BeEmpty();
             output.Tables.Should().BeEmpty();
-            output.Capacity.Should().BeNull();
+            output.Capacity.Should().Be(RomBuilderDefaults.Capacity);
         }
 
         [Test]
