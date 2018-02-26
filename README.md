@@ -67,6 +67,15 @@ tables to include when generating cartridge images.
       - Determines bank wrapping.
     - `Type` (see below, required)
       - Determines what kind of data is written to this table.
+  - `Fills` (array of objects)
+    - `Bank` (int, required)
+      - Bank number to write the data to.
+    - `Offset` (int, required)
+      - 16-bit offset within the bank. Use values 0000-3FFF hex.
+    - `Length` (int)
+      - Length of data to generate.
+    - `WrapStrategy` (see below)
+      - Determines bank wrapping.
 
 ##### Wrap strategies
 

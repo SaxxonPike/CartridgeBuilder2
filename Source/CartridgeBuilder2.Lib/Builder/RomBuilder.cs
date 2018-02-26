@@ -35,10 +35,15 @@ namespace CartridgeBuilder2.Lib.Builder
                 f ?? throw new CartridgeBuilderException("File cannot be null.")).AsArray();
             var patches = romBuilderConfiguration.Patches.Select(p =>
                 p ?? throw new CartridgeBuilderException("Patch cannot be null.")).AsArray();
+            var fills = romBuilderConfiguration.Fills.Select(f =>
+                f ?? throw new CartridgeBuilderException("Fill cannot be null."))
+                .Select(ConvertFillToPatch)
+                .AsArray();
+            
             var rom = new RomSpace(romBuilderConfiguration.Capacity ?? RomBuilderDefaults.Capacity);
 
             _tableWriter.Reserve(rom, tables);
-            _patchWriter.Write(rom, patches);
+            _patchWriter.Write(rom, fills.Concat(patches));
             var packedFiles = _filePacker.Pack(rom, files).AsArray();
             _tableWriter.Write(rom, tables, packedFiles);
             
@@ -46,6 +51,30 @@ namespace CartridgeBuilder2.Lib.Builder
             {
                 Files = packedFiles,
                 Rom = rom
+            };
+        }
+
+        private IPatch ConvertFillToPatch(IFill fill)
+        {
+            if (fill.Data == null)
+                throw new CartridgeBuilderException("Fill data cannot be null.");
+            if (!fill.Data.Any())
+                throw new CartridgeBuilderException("Fill data cannot be empty.");
+            
+            IEnumerable<byte> Generate()
+            {
+                while (true)
+                    foreach (var b in fill.Data)
+                        yield return b;
+                // ReSharper disable once IteratorNeverReturns
+            }
+            
+            return new Patch
+            {
+                Data = Generate().Take(fill.Length).ToArray(),
+                Bank = fill.Bank,
+                Offset = fill.Offset,
+                WrapStrategy = fill.WrapStrategy
             };
         }
     }

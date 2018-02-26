@@ -26,5 +26,10 @@ namespace CartridgeBuilder2.Lib.Builder
         /// Bank wrapping strategy.
         /// </summary>
         WrapStrategy WrapStrategy { get; }
+        
+        /// <summary>
+        /// If true, allow deduplication of the patch.
+        /// </summary>
+        bool Dedupe { get; }
     }
 }

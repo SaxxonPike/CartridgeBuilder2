@@ -24,6 +24,11 @@ namespace CartridgeBuilder2.Lib.Builder
         IList<ITable> Tables { get; }
         
         /// <summary>
+        /// Contains information about reserved space.
+        /// </summary>
+        IList<IFill> Fills { get; }
+        
+        /// <summary>
         /// Size of the output ROM.
         /// </summary>
         int? Capacity { get; }

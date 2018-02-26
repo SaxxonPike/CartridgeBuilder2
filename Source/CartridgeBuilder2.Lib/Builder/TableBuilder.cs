@@ -36,10 +36,12 @@ namespace CartridgeBuilder2.Lib.Builder
                 case TableType.LoadAddressHigh:
                     if (fileList.Any(f => f.LoadAddress == null))
                         throw new CartridgeBuilderException("Null load addresses can't be used in a table.");
+                    // ReSharper disable once PossibleInvalidOperationException
                     return fileList.Select(f => (f.LoadAddress.Value >> 8) & 0xFF);
                 case TableType.LoadAddressLow:
                     if (fileList.Any(f => f.LoadAddress == null))
                         throw new CartridgeBuilderException("Null load addresses can't be used in a table.");
+                    // ReSharper disable once PossibleInvalidOperationException
                     return fileList.Select(f => f.LoadAddress.Value & 0xFF);
                 case TableType.Name:
                     return fileList.Select(f => (int) f.Name.Skip(table.Index).Take(1).FirstOrDefault());

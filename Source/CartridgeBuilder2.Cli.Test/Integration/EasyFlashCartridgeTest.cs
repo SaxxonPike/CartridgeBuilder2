@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CartridgeBuilder2.Cli.Configuration;
 using CartridgeBuilder2.Lib.Builder;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using Autofac;
 using CartridgeBuilder2.Lib.Infrastructure;
 

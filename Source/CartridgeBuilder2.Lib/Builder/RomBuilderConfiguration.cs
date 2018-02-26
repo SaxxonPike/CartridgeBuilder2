@@ -15,6 +15,8 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <inheritdoc/>
         public IList<ITable> Tables { get; set; }
         /// <inheritdoc/>
+        public IList<IFill> Fills { get; set; }
+        /// <inheritdoc/>
         public int? Capacity { get; set; }
     }
 }

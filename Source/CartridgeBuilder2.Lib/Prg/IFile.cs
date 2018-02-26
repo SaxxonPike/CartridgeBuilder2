@@ -7,5 +7,6 @@ namespace CartridgeBuilder2.Lib.Prg
         int? LoadAddress { get; }
         IList<byte> Data { get; }
         byte[] Name { get; }
+        bool Dedupe { get; }
     }
 }

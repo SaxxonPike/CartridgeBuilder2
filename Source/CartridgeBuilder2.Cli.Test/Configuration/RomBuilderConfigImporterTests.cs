@@ -122,7 +122,8 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
                 Patches = new[]
                 {
                     new {Bank = bank, Offset = offset, Path = path}
-                }
+                },
+                Fills = new object[0]
             });
 
             // Act.
@@ -140,15 +141,16 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var bank = Create<int>();
             var offset = Create<int>();
             var path = Create<string>();
-            var usage = Create<WrapStrategy>();
+            var wrapStrategy = Create<WrapStrategy>();
             var config = TextStream(new
             {
                 Files = new object[0],
                 Partitions = new object[0],
                 Patches = new[]
                 {
-                    new {Bank = bank, Offset = offset, Path = path, Usage = usage.ToString()}
-                }
+                    new {Bank = bank, Offset = offset, Path = path, WrapStrategy = wrapStrategy.ToString()}
+                },
+                Fills = new object[0]
             });
 
             // Act.
@@ -159,7 +161,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             output.Patches[0].Bank.Should().Be(bank);
             output.Patches[0].Offset.Should().Be(offset);
             output.Patches[0].Path.Should().Be(path);
-            output.Patches[0].WrapStrategy.Should().Be(usage);
+            output.Patches[0].WrapStrategy.Should().Be(wrapStrategy);
         }
 
         [Test]
@@ -176,7 +178,8 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
                 Tables = new[]
                 {
                     new {Bank = bank, Offset = offset, Type = type}
-                }
+                },
+                Fills = new object[0]
             });
 
             // Act.
@@ -185,7 +188,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             // Assert.
             output.Tables.Should().HaveCount(1);
             output.Tables[0].Index.Should().Be(0);
-            output.Tables[0].Usage.Should().Be(WrapStrategy.Both);
+            output.Tables[0].WrapStrategy.Should().Be(WrapStrategy.Both);
         }
 
         [Test]
@@ -196,15 +199,16 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var offset = Create<int>();
             var type = Create<TableType>();
             var index = Create<int>();
-            var usage = Create<WrapStrategy>();
+            var wrapStrategy = Create<WrapStrategy>();
             var config = TextStream(new
             {
                 Files = new object[0],
                 Partitions = new object[0],
                 Tables = new[]
                 {
-                    new {Bank = bank, Offset = offset, Type = type, Index = index, Usage = usage.ToString()}
-                }
+                    new {Bank = bank, Offset = offset, Type = type, Index = index, WrapStrategy = wrapStrategy.ToString()}
+                },
+                Fills = new object[0]
             });
 
             // Act.
@@ -216,7 +220,65 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             output.Tables[0].Index.Should().Be(index);
             output.Tables[0].Offset.Should().Be(offset);
             output.Tables[0].Type.Should().Be(type);
-            output.Tables[0].Usage.Should().Be(usage);
+            output.Tables[0].WrapStrategy.Should().Be(wrapStrategy);
         }
+        
+        [Test]
+        public void Import_SetsFillDefaults()
+        {
+            // Arrange.
+            var bank = Create<int>();
+            var offset = Create<int>();
+            var bytes = CreateMany<byte>();
+            var length = Create<int>();
+            var config = TextStream(new
+            {
+                Files = new object[0],
+                Partitions = new object[0],
+                Patches = new object[0],
+                Fills = new[]
+                {
+                    new {Bank = bank, Offset = offset, Bytes = bytes, Length = length}
+                }
+            });
+
+            // Act.
+            var output = Subject.Import(config);
+
+            // Assert.
+            output.Fills.Should().HaveCount(1);
+            output.Fills[0].WrapStrategy.Should().Be(WrapStrategy.Both);
+        }
+
+        [Test]
+        public void Import_SetsFillValues()
+        {
+            // Arrange.
+            var bank = Create<int>();
+            var offset = Create<int>();
+            var bytes = CreateMany<byte>();
+            var wrapStrategy = Create<WrapStrategy>();
+            var length = Create<int>();
+            var config = TextStream(new
+            {
+                Files = new object[0],
+                Partitions = new object[0],
+                Patches = new object[0],
+                Fills = new[]
+                {
+                    new {Bank = bank, Offset = offset, Bytes = bytes, WrapStrategy = wrapStrategy.ToString(), Length = length}
+                }
+            });
+
+            // Act.
+            var output = Subject.Import(config);
+
+            // Assert.
+            output.Fills.Should().HaveCount(1);
+            output.Fills[0].Bank.Should().Be(bank);
+            output.Fills[0].Offset.Should().Be(offset);
+            output.Fills[0].Bytes.Should().BeEquivalentTo(bytes);
+            output.Fills[0].WrapStrategy.Should().Be(wrapStrategy);
+        }        
     }
 }

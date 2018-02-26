@@ -9,5 +9,6 @@ namespace CartridgeBuilder2.Cli.Configuration
 
         public string Name { get; set; }
         public int? LoadAddress { get; set; }
+        public bool Dedupe { get; set; } = true;
     }
 }

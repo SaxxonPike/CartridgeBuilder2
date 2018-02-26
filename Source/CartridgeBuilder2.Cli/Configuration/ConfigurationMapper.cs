@@ -32,7 +32,8 @@ namespace CartridgeBuilder2.Cli.Configuration
                     Bank = p.Bank,
                     Data = _fileSystem.ReadAllBytes(p.Path),
                     Offset = p.Offset,
-                    WrapStrategy = p.WrapStrategy
+                    WrapStrategy = p.WrapStrategy,
+                    Dedupe = false
                 }).ToList<IPatch>(),
                 Tables = config.Tables.Select(t => new Table
                 {
@@ -41,7 +42,15 @@ namespace CartridgeBuilder2.Cli.Configuration
                     Length = t.Length ?? config.Files.Count,
                     Offset = t.Offset,
                     Type = t.Type
-                }).ToList<ITable>()
+                }).ToList<ITable>(),
+                Fills = config.Fills.Select(f => new Fill
+                {
+                    Bank = f.Bank,
+                    Data = f.Bytes.ToList(),
+                    Length = f.Length,
+                    Offset = f.Offset,
+                    WrapStrategy = f.WrapStrategy
+                }).ToList<IFill>()
             };
         }
     }

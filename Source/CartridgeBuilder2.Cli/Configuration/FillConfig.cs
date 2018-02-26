@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace CartridgeBuilder2.Cli.Configuration
 {
-    public class PatchConfig
+    public class FillConfig
     {
         [JsonRequired]
         public int Bank { get; set; }
@@ -14,8 +14,11 @@ namespace CartridgeBuilder2.Cli.Configuration
         public WrapStrategy WrapStrategy { get; set; }
 
         [JsonRequired]
-        public string Path { get; set; }
-
+        public byte[] Bytes { get; set; }
+        
+        [JsonRequired]
+        public int Length { get; set; } 
+        
         public bool Dedupe { get; set; }
     }
 }

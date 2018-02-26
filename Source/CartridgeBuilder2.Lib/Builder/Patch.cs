@@ -15,5 +15,7 @@ namespace CartridgeBuilder2.Lib.Builder
         public IList<byte> Data { get; set; }
         /// <inheritdoc />
         public WrapStrategy WrapStrategy { get; set; }
+        /// <inheritdoc />
+        public bool Dedupe { get; set; }
     }
 }
