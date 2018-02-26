@@ -25,7 +25,8 @@ namespace CartridgeBuilder2.Cli.Configuration
                 {
                     Name = _stringConverter.ConvertToBytes(_fileSystem.GetName(fn)),
                     LoadAddress = f.LoadAddress,
-                    Data = _fileSystem.ReadAllBytes(fn)
+                    Data = _fileSystem.ReadAllBytes(fn),
+                    Dedupe = f.Dedupe
                 })).ToList<IFile>(),
                 Patches = config.Patches.Select(p => new Patch
                 {
@@ -33,7 +34,7 @@ namespace CartridgeBuilder2.Cli.Configuration
                     Data = _fileSystem.ReadAllBytes(p.Path),
                     Offset = p.Offset,
                     WrapStrategy = p.WrapStrategy,
-                    Dedupe = false
+                    Dedupe = p.Dedupe
                 }).ToList<IPatch>(),
                 Tables = config.Tables.Select(t => new Table
                 {
@@ -49,7 +50,8 @@ namespace CartridgeBuilder2.Cli.Configuration
                     Data = f.Bytes.ToList(),
                     Length = f.Length,
                     Offset = f.Offset,
-                    WrapStrategy = f.WrapStrategy
+                    WrapStrategy = f.WrapStrategy,
+                    Dedupe = f.Dedupe
                 }).ToList<IFill>()
             };
         }

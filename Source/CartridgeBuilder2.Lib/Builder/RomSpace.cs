@@ -17,5 +17,9 @@ namespace CartridgeBuilder2.Lib.Builder
         public IList<byte> Data { get; }
         /// <inheritdoc/>
         public IList<UsageType> Usage { get; }
+        /// <inheritdoc/>
+        public int DataLength { get; set; }
+        /// <inheritdoc/>
+        public int LowestAvailable { get; set; }
     }
 }

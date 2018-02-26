@@ -63,7 +63,7 @@ namespace CartridgeBuilder2.Lib.Builder
                         {
                             CompressionMethod = existingFile.CompressionMethod,
                             Length = existingFile.Length,
-                            LoadAddress = file.LoadAddress,
+                            LoadAddress = loadAddress,
                             Name = file.Name.ToArray(),
                             StartAddress = existingFile.StartAddress,
                             StartBank = existingFile.StartBank,

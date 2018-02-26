@@ -59,7 +59,18 @@ namespace CartridgeBuilder2.Lib.Builder
             {
                 if (inputOffset < inputData.Length)
                     workspaceData[i] = inputData[inputOffset++];
+                
                 used[i] = UsageType.Used;
+                if (i >= romSpace.DataLength)
+                    romSpace.DataLength = i + 1;
+            }
+
+            for (var i = romSpace.LowestAvailable; i <= romSpace.DataLength; i++)
+            {
+                if (used[i] != UsageType.Unused) 
+                    continue;
+                romSpace.LowestAvailable = i;
+                break;
             }
             
             return new Allocation
@@ -88,7 +99,19 @@ namespace CartridgeBuilder2.Lib.Builder
                 throw new CartridgeBuilderException($"Not enough space to reserve {allocation.Length} bytes at {allocation.Offset}");
 
             foreach (var i in indices)
+            {
+                if (i >= romSpace.DataLength)
+                    romSpace.DataLength = i + 1;
                 used[i] = UsageType.Reserved;
+            }
+
+            for (var i = romSpace.LowestAvailable; i <= romSpace.DataLength; i++)
+            {
+                if (used[i] != UsageType.Unused) 
+                    continue;
+                romSpace.LowestAvailable = i;
+                break;
+            }
             
             return new Allocation
             {
@@ -102,13 +125,13 @@ namespace CartridgeBuilder2.Lib.Builder
         private IAllocation Fit(IRomSpace romSpace, int size, WrapStrategy strategy)
         {
             var generate = _indexGeneratorFactory.CreateGenerator(strategy);
-            var data = romSpace.Data;
             var used = romSpace.Usage;
 
-            return generate(0, data.Count - size)
+            return generate(romSpace.LowestAvailable, romSpace.DataLength - size)
                 .Where(i => generate(i, i + size).All(j => used[j] == UsageType.Unused))
                 .Select(i => new Allocation {Offset = i, Length = size, WrapStrategy = strategy})
-                .FirstOrDefault();
+                .FirstOrDefault() ??
+                new Allocation{Offset = romSpace.DataLength, Length = size, WrapStrategy = strategy};
         }
     }
 }
