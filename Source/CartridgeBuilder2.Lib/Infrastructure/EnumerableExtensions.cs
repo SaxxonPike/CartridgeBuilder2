@@ -6,6 +6,11 @@ namespace CartridgeBuilder2.Lib.Infrastructure
 {
     public static class EnumerableExtensions
     {
+        public static ICollection<T> AsCollection<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable as ICollection<T> ?? enumerable.ToList();
+        }
+        
         public static IList<T> AsList<T>(this IEnumerable<T> enumerable)
         {
             return enumerable as IList<T> ?? enumerable.ToList();

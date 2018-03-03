@@ -30,23 +30,23 @@ namespace CartridgeBuilder2.Lib.Builder
             _logger.Debug("Validating configuration");
             
             var tables = romBuilderConfiguration.Tables.Select(t =>
-                t ?? throw new CartridgeBuilderException("Table cannot be null.")).AsArray();
+                t ?? throw new CartridgeBuilderException("Table cannot be null.")).AsCollection();
             var files = romBuilderConfiguration.Files.Select(f =>
                 f ?? throw new CartridgeBuilderException("File cannot be null."))
                 .OrderByDescending(f => f.Data?.Count ?? 0)
-                .AsArray();
+                .AsCollection();
             var patches = romBuilderConfiguration.Patches.Select(p =>
-                p ?? throw new CartridgeBuilderException("Patch cannot be null.")).AsArray();
+                p ?? throw new CartridgeBuilderException("Patch cannot be null.")).AsCollection();
             var fills = romBuilderConfiguration.Fills.Select(f =>
                 f ?? throw new CartridgeBuilderException("Fill cannot be null."))
                 .Select(ConvertFillToPatch)
-                .AsArray();
+                .AsCollection();
             
             var rom = new RomSpace(romBuilderConfiguration.Capacity ?? RomBuilderDefaults.Capacity);
 
             _tableWriter.Reserve(rom, tables);
             _patchWriter.Write(rom, fills.Concat(patches));
-            var packedFiles = _filePacker.Pack(rom, files).AsArray();
+            var packedFiles = _filePacker.Pack(rom, files).AsList();
             _tableWriter.Write(rom, tables, packedFiles);
             
             return new RomBuilderResult

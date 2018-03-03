@@ -144,8 +144,33 @@ namespace CartridgeBuilder2.Lib.Builder
         {
             var generate = _indexGeneratorFactory.CreateGenerator(strategy);
             var used = romSpace.Usage;
-            return generate(romSpace.LowestAvailable, romSpace.Data.Count - size)
-                .Where(i => generate(i, i + size).All(j => used[j] == UsageType.Unused))
+            var minimum = romSpace.LowestAvailable;
+
+            if (size == 0)
+                return new Allocation {Offset = 0, Length = 0, WrapStrategy = WrapStrategy.Both};
+            
+            return generate(minimum, romSpace.Data.Count - size)
+                .Where(i =>
+                {
+                    if (i < minimum)
+                        return false;
+                    if (used[i] != UsageType.Unused)
+                        return false;
+                    
+                    var check = generate(i + 1, romSpace.Data.Count)
+                        .Take(size - 1)
+                        .TakeWhile(j => used[j] == UsageType.Unused)
+                        .AsCollection();
+
+                    if (check.Count < size - 1)
+                    {
+                        if (check.Count > 0)
+                            minimum = check.Last() + 1;
+                        return false;
+                    }
+
+                    return true;
+                })
                 .Select(i => new Allocation {Offset = i, Length = size, WrapStrategy = strategy})
                 .FirstOrDefault();
         }
