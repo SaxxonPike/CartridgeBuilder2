@@ -44,7 +44,7 @@ namespace CartridgeBuilder2.Lib.Builder
                 _logger.Debug($"Building table of type {table.Type}");
                 var data = _tableBuilder.Build(table, files);
                 _logger.Debug($"Patching table in bank 0x{table.Bank:X} at offset 0x{table.Offset:X}");
-                var fit = _packer.Write(romSpace, data, _allocationGenerator.GenerateFromTable(table));
+                var fit = _packer.Write(romSpace, data, _allocationGenerator.GenerateFromTable(table), OverwriteRule.Allow);
                 _logger.Debug($"Table was patched at ROM offset {fit.Offset:X5}");
             }
         }

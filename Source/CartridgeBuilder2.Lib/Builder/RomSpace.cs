@@ -11,6 +11,8 @@ namespace CartridgeBuilder2.Lib.Builder
         {
             Data = new byte[capacity];
             Usage = new UsageType[capacity];
+            DataContentLength = 0;
+            LowestAvailable = 0;
         }
 
         /// <inheritdoc/>
@@ -18,7 +20,7 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <inheritdoc/>
         public IList<UsageType> Usage { get; }
         /// <inheritdoc/>
-        public int DataLength { get; set; }
+        public int DataContentLength { get; set; }
         /// <inheritdoc/>
         public int LowestAvailable { get; set; }
     }

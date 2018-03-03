@@ -20,7 +20,7 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <summary>
         /// Indicates the maximum used space.
         /// </summary>
-        int DataLength { get; set; }
+        int DataContentLength { get; set; }
         
         /// <summary>
         /// Indicates lowest offset of the next available byte.

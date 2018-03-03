@@ -244,8 +244,8 @@ namespace CartridgeBuilder2.Lib.Test.Builder
                 .WithMessage($"Not enough space to reserve {allocation.Length} bytes at {allocation.Offset}");
         }
 
-        [Test]
-        public void Write_WithLowStrategy_WritesData()
+        [Theory]
+        public void Write_WithLowStrategy_WritesData(OverwriteRule overwriteRule)
         {
             // Arrange.
             var romSpace = new RomSpace(0x8000);
@@ -258,7 +258,7 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             };
 
             // Act.
-            var output = Subject.Write(romSpace, data, allocation);
+            var output = Subject.Write(romSpace, data, allocation, overwriteRule);
 
             // Assert.
             output.Should().BeEquivalentTo(new Allocation
@@ -274,8 +274,8 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             romSpace.Usage.SequenceEqual(expected).Should().BeTrue();
         }
 
-        [Test]
-        public void Write_WithHighStrategy_WritesData()
+        [Theory]
+        public void Write_WithHighStrategy_WritesData(OverwriteRule overwriteRule)
         {
             // Arrange.
             var romSpace = new RomSpace(0x8000);
@@ -288,7 +288,7 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             };
 
             // Act.
-            var output = Subject.Write(romSpace, data, allocation);
+            var output = Subject.Write(romSpace, data, allocation, overwriteRule);
 
             // Assert.
             output.Should().BeEquivalentTo(new Allocation
@@ -304,8 +304,8 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             romSpace.Usage.SequenceEqual(expected).Should().BeTrue();
         }
 
-        [Test]
-        public void Write_WithBothStrategy_WritesData()
+        [Theory]
+        public void Write_WithBothStrategy_WritesData(OverwriteRule overwriteRule)
         {
             // Arrange.
             var romSpace = new RomSpace(0x8000);
@@ -318,7 +318,7 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             };
 
             // Act.
-            var output = Subject.Write(romSpace, data, allocation);
+            var output = Subject.Write(romSpace, data, allocation, overwriteRule);
 
             // Assert.
             output.Should().BeEquivalentTo(new Allocation
@@ -333,8 +333,8 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             romSpace.Usage.SequenceEqual(expected).Should().BeTrue();
         }
 
-        [Test]
-        public void Write_WithoutAvailableSpace_Throws()
+        [Theory]
+        public void Write_WithoutAvailableSpace_Throws(OverwriteRule overwriteRule)
         {
             // Arrange.
             var romSpace = new RomSpace(0x4000);
@@ -348,7 +348,7 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             };
 
             // Act.
-            Action act = () => Subject.Write(romSpace, data, allocation);
+            Action act = () => Subject.Write(romSpace, data, allocation, overwriteRule);
 
             // Assert.
             act.ShouldThrow<CartridgeBuilderException>()

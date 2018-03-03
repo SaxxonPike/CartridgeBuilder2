@@ -79,7 +79,7 @@ namespace CartridgeBuilder2.Lib.Builder
                     throw new CartridgeBuilderException($"Can't fit {fileData.Length} bytes.");
 
                 _logger.Debug($"Packing file at ROM offset {fit.Offset:X5} using wrap strategy {fit.WrapStrategy} and compression {fit.CompressionMethod}");
-                var placement = _packer.Write(romSpace, fileData, fit);
+                var placement = _packer.Write(romSpace, fileData, fit, OverwriteRule.Deny);
                 var newFile = new PackedFile
                 {
                     CompressionMethod = placement.CompressionMethod,

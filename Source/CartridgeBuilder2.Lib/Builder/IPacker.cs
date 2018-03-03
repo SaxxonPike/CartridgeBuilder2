@@ -15,7 +15,7 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <summary>
         /// Writes the specified data to the specified place in ROM. 
         /// </summary>
-        IAllocation Write(IRomSpace romSpace, IEnumerable<byte> data, IAllocation allocation);
+        IAllocation Write(IRomSpace romSpace, IEnumerable<byte> data, IAllocation allocation, OverwriteRule overwriteRule);
         
         /// <summary>
         /// Reserves the specified place in ROM so that the Fit method will not consider it for file placement.

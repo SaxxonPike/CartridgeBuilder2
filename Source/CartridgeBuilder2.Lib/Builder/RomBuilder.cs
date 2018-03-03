@@ -32,7 +32,9 @@ namespace CartridgeBuilder2.Lib.Builder
             var tables = romBuilderConfiguration.Tables.Select(t =>
                 t ?? throw new CartridgeBuilderException("Table cannot be null.")).AsArray();
             var files = romBuilderConfiguration.Files.Select(f =>
-                f ?? throw new CartridgeBuilderException("File cannot be null.")).AsArray();
+                f ?? throw new CartridgeBuilderException("File cannot be null."))
+                .OrderByDescending(f => f.Data?.Count ?? 0)
+                .AsArray();
             var patches = romBuilderConfiguration.Patches.Select(p =>
                 p ?? throw new CartridgeBuilderException("Patch cannot be null.")).AsArray();
             var fills = romBuilderConfiguration.Fills.Select(f =>

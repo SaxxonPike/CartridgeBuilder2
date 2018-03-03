@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace CartridgeBuilder2.Lib.Infrastructure
@@ -32,6 +33,13 @@ namespace CartridgeBuilder2.Lib.Infrastructure
             
             if (count > 0)
                 yield return buffer.Take(count).ToArray();
+        }
+
+        public static IEnumerable<T> AsParallelIfNotDebug<T>(this IEnumerable<T> enumerable)
+        {
+            return Debugger.IsAttached 
+                ? enumerable 
+                : enumerable.AsParallel();
         }
     }
 }

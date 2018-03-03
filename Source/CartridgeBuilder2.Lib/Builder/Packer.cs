@@ -24,7 +24,7 @@ namespace CartridgeBuilder2.Lib.Builder
             
             return Enum.GetValues(typeof(WrapStrategy))
                 .Cast<WrapStrategy>()
-                .AsParallel()
+                .AsParallelIfNotDebug()
                 .Select(strategy => Fit(romSpace, size, strategy))
                 .Where(result => result != null)
                 .OrderBy(result => result.Offset)
@@ -33,7 +33,7 @@ namespace CartridgeBuilder2.Lib.Builder
         }
 
         /// <inheritdoc />
-        public IAllocation Write(IRomSpace romSpace, IEnumerable<byte> data, IAllocation allocation)
+        public IAllocation Write(IRomSpace romSpace, IEnumerable<byte> data, IAllocation allocation, OverwriteRule overwriteRule)
         {
             if (romSpace == null)
                 throw new ArgumentNullException(nameof(romSpace));
@@ -54,18 +54,36 @@ namespace CartridgeBuilder2.Lib.Builder
 
             if (indices.Length < allocation.Length)
                 throw new CartridgeBuilderException($"Not enough space to write {allocation.Length} bytes at {allocation.Offset}");
-            
-            foreach (var i in indices)
-            {
-                if (inputOffset < inputData.Length)
-                    workspaceData[i] = inputData[inputOffset++];
-                
-                used[i] = UsageType.Used;
-                if (i >= romSpace.DataLength)
-                    romSpace.DataLength = i + 1;
-            }
 
-            for (var i = romSpace.LowestAvailable; i <= romSpace.DataLength; i++)
+            if (overwriteRule == OverwriteRule.Allow)
+            {
+                foreach (var i in indices)
+                {
+                    if (inputOffset < inputData.Length)
+                        workspaceData[i] = inputData[inputOffset++];
+
+                    used[i] = UsageType.Used;
+                    if (i >= romSpace.DataContentLength)
+                        romSpace.DataContentLength = i + 1;
+                }                
+            }
+            else
+            {
+                foreach (var i in indices)
+                {
+                    if (inputOffset < inputData.Length)
+                        workspaceData[i] = inputData[inputOffset++];
+
+                    if (used[i] == UsageType.Used)
+                        throw new CartridgeBuilderException($"Overwritten data at {allocation.Offset}");
+                    
+                    used[i] = UsageType.Used;
+                    if (i >= romSpace.DataContentLength)
+                        romSpace.DataContentLength = i + 1;
+                }                
+            }
+            
+            for (var i = romSpace.LowestAvailable; i <= romSpace.DataContentLength; i++)
             {
                 if (used[i] != UsageType.Unused) 
                     continue;
@@ -100,12 +118,12 @@ namespace CartridgeBuilder2.Lib.Builder
 
             foreach (var i in indices)
             {
-                if (i >= romSpace.DataLength)
-                    romSpace.DataLength = i + 1;
+                if (i >= romSpace.DataContentLength)
+                    romSpace.DataContentLength = i + 1;
                 used[i] = UsageType.Reserved;
             }
 
-            for (var i = romSpace.LowestAvailable; i <= romSpace.DataLength; i++)
+            for (var i = romSpace.LowestAvailable; i <= romSpace.DataContentLength; i++)
             {
                 if (used[i] != UsageType.Unused) 
                     continue;
@@ -126,12 +144,10 @@ namespace CartridgeBuilder2.Lib.Builder
         {
             var generate = _indexGeneratorFactory.CreateGenerator(strategy);
             var used = romSpace.Usage;
-
-            return generate(romSpace.LowestAvailable, romSpace.DataLength - size)
+            return generate(romSpace.LowestAvailable, romSpace.Data.Count - size)
                 .Where(i => generate(i, i + size).All(j => used[j] == UsageType.Unused))
                 .Select(i => new Allocation {Offset = i, Length = size, WrapStrategy = strategy})
-                .FirstOrDefault() ??
-                new Allocation{Offset = romSpace.DataLength, Length = size, WrapStrategy = strategy};
+                .FirstOrDefault();
         }
     }
 }
