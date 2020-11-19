@@ -24,7 +24,6 @@ namespace CartridgeBuilder2.Lib.Builder
             
             return Enum.GetValues(typeof(WrapStrategy))
                 .Cast<WrapStrategy>()
-                .AsParallelIfNotDebug()
                 .Select(strategy => Fit(romSpace, size, strategy))
                 .Where(result => result != null)
                 .OrderBy(result => result.Offset)
