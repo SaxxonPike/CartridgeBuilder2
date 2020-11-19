@@ -16,6 +16,18 @@ namespace CartridgeBuilder2.Lib.Builder
                     if (table.Mask != null)
                         i &= table.Mask.Value;
 
+                    switch (table.Case)
+                    {
+                        case CaseType.Upper:
+                            if (i >= 0x61 && i <= 0x7A)
+                                i ^= 0x20;
+                            break;
+                        case CaseType.Lower:
+                            if (i >= 0x41 && i <= 0x5A)
+                                i ^= 0x20;
+                            break;
+                    }
+
                     return unchecked((byte) i);
                 })
                 .ToArray();

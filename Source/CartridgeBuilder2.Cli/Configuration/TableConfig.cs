@@ -23,5 +23,7 @@ namespace CartridgeBuilder2.Cli.Configuration
         public int? Length { get; set; }
         
         public int? Mask { get; set; }
+        
+        public CaseType? Case { get; set; }
     }
 }

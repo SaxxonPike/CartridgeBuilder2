@@ -40,5 +40,10 @@ namespace CartridgeBuilder2.Lib.Builder
         /// Bitmask for use on the output values.
         /// </summary>
         int? Mask { get; }
+        
+        /// <summary>
+        /// For strings, determines the character modifier to use.
+        /// </summary>
+        CaseType? Case { get; }
     }
 }
