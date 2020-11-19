@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Linq;
+using AutoFixture;
 using CartridgeBuilder2.Lib.Crt;
 using Moq;
 using NUnit.Framework;
-using Ploeh.AutoFixture;
 
 namespace CartridgeBuilder2.Lib.Test.Crt
 {

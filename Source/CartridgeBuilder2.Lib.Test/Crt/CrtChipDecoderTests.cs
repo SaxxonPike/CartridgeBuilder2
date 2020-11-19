@@ -79,7 +79,7 @@ namespace CartridgeBuilder2.Lib.Test.Crt
             Action act = () => Subject.Decode(mem);
 
             // Assert.
-            act.ShouldThrow<CartridgeBuilderException>()
+            act.Should().Throw<CartridgeBuilderException>()
                 .WithMessage($"Chip ID is invalid. Found: {chipId:X8}");
         }
 
@@ -101,7 +101,7 @@ namespace CartridgeBuilder2.Lib.Test.Crt
             Action act = () => Subject.Decode(mem);
 
             // Assert.
-            act.ShouldThrow<CartridgeBuilderException>()
+            act.Should().Throw<CartridgeBuilderException>()
                 .WithMessage($"Chip header length is invalid. Found: {value:X8}");
         }
 
@@ -116,7 +116,7 @@ namespace CartridgeBuilder2.Lib.Test.Crt
             Action act = () => Subject.Decode(mem);
 
             // Assert.
-            act.ShouldThrow<CartridgeBuilderException>()
+            act.Should().Throw<CartridgeBuilderException>()
                 .WithMessage($"Chip header is less than 16 bytes. Found only {data.Length} bytes");
         }
 
@@ -127,7 +127,7 @@ namespace CartridgeBuilder2.Lib.Test.Crt
             Action act = () => Subject.Decode(null);
 
             // Assert.
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
     }
 }

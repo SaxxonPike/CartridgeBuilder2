@@ -240,7 +240,7 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             Action act = () => Subject.Reserve(romSpace, allocation);
 
             // Assert.
-            act.ShouldThrow<CartridgeBuilderException>()
+            act.Should().Throw<CartridgeBuilderException>()
                 .WithMessage($"Not enough space to reserve {allocation.Length} bytes at {allocation.Offset}");
         }
 
@@ -351,7 +351,7 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             Action act = () => Subject.Write(romSpace, data, allocation, overwriteRule);
 
             // Assert.
-            act.ShouldThrow<CartridgeBuilderException>()
+            act.Should().Throw<CartridgeBuilderException>()
                 .WithMessage($"Not enough space to write {allocation.Length} bytes at {allocation.Offset}");
         }
     }

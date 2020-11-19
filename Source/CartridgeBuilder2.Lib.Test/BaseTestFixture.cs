@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using AutoFixture;
+using AutoFixture.Dsl;
 using NUnit.Framework;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.Dsl;
 
 namespace CartridgeBuilder2.Lib.Test
 {

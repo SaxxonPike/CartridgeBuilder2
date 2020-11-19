@@ -78,7 +78,7 @@ namespace CartridgeBuilder2.Lib.Test.Crt
             Action act = () => Subject.Decode(mem);
 
             // Assert.
-            act.ShouldThrow<CartridgeBuilderException>()
+            act.Should().Throw<CartridgeBuilderException>()
                 .WithMessage($"File ID is invalid. Found: {_stringConverter.ConvertToString(cartridgeId)}");
         }
 
@@ -102,7 +102,7 @@ namespace CartridgeBuilder2.Lib.Test.Crt
             Action act = () => Subject.Decode(mem);
 
             // Assert.
-            act.ShouldThrow<CartridgeBuilderException>()
+            act.Should().Throw<CartridgeBuilderException>()
                 .WithMessage($"File header length is invalid. Found: {headerLength:X8}");
         }
     }

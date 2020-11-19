@@ -5,7 +5,7 @@ cartridge images, but it could be repurposed to generate images for other hardwa
 
 ### Requirements
 
-- .NET Framework 4.6.1+ *or* .NET Standard 1.5+
+- .NET Standard 2.0 (for library), .NET Core 3.0 (for CLI)
 
 ### Usage
 
@@ -112,15 +112,12 @@ to wrap back to.
 
 - Target frameworks
   - CLI application
-    - .NET Framework 4.6.1
-    - .NET Core 1.1
+    - .NET Core 3.0
   - Library
-    - .NET Framework 4.6.1
-    - .NET Standard 1.5
+    - .NET Standard 2.0
 
 - Compatible build processes
-  - MSBuild
-  - Visual Studio 2017
+  - `dotnet build`
   - JetBrains Rider
   
 ### Contributing

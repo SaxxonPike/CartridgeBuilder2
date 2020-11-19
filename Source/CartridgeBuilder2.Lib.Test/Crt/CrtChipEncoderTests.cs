@@ -27,7 +27,7 @@ namespace CartridgeBuilder2.Lib.Test.Crt
             Action act = () => Subject.Encode(null, chip);
 
             // Assert.
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace CartridgeBuilder2.Lib.Test.Crt
             Action act = () => Subject.Encode(mem, null);
 
             // Assert.
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Test]

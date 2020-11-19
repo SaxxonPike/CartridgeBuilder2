@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoFixture;
 using CartridgeBuilder2.Cli.Configuration;
 using CartridgeBuilder2.Lib.Builder;
 using NUnit.Framework;
-using Ploeh.AutoFixture;
 
 namespace CartridgeBuilder2.Cli.Test.Integration
 {
