@@ -35,5 +35,10 @@ namespace CartridgeBuilder2.Lib.Builder
         /// ROM bank wrapping strategy to use when writing the table.
         /// </summary>
         WrapStrategy WrapStrategy { get; }
+
+        /// <summary>
+        /// Bitmask for use on the output values.
+        /// </summary>
+        int? Mask { get; }
     }
 }

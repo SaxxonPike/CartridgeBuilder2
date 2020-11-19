@@ -87,6 +87,7 @@ tables to include when generating cartridge images.
 
 - `Bank`: bank number where a file is stored.
 - `Name`: output file name, determined by properties in the Files section.
+- `NameNumber`: converts a number string to a byte value (hex.)
 - `OffsetLow`: low 8 bits of the offset within the bank.
 - `OffsetHigh`: high 8 bits of the offset within the bank.
 - `StartAddressLow`: low 8 bits of the system-mapped address within the bank.

@@ -42,7 +42,8 @@ namespace CartridgeBuilder2.Cli.Configuration
                     Index = t.Index,
                     Length = t.Length ?? config.Files.Count,
                     Offset = t.Offset,
-                    Type = t.Type
+                    Type = t.Type,
+                    Mask = t.Mask
                 }).ToList<ITable>(),
                 Fills = config.Fills.Select(f => new Fill
                 {

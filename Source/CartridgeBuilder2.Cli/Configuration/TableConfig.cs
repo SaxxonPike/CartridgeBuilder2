@@ -21,5 +21,7 @@ namespace CartridgeBuilder2.Cli.Configuration
         public int Index { get; set; }
         
         public int? Length { get; set; }
+        
+        public int? Mask { get; set; }
     }
 }

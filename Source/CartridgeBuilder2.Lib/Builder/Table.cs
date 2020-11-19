@@ -11,5 +11,6 @@ namespace CartridgeBuilder2.Lib.Builder
         public int Length { get; set; }
         public int Index { get; set; }
         public WrapStrategy WrapStrategy { get; set; }
+        public int? Mask { get; set; }
     }
 }

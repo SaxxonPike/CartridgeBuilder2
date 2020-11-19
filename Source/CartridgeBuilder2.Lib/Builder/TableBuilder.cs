@@ -11,7 +11,13 @@ namespace CartridgeBuilder2.Lib.Builder
         public IList<byte> Build(ITable table, IEnumerable<IPackedFile> files)
         {
             var values = BuildTableInternal(table, files)
-                .Select(i => unchecked((byte) i))
+                .Select(i =>
+                {
+                    if (table.Mask != null)
+                        i &= table.Mask.Value;
+
+                    return unchecked((byte) i);
+                })
                 .ToArray();
 
             var output = new byte[table.Length];
@@ -59,6 +65,21 @@ namespace CartridgeBuilder2.Lib.Builder
                     return fileList.Select(f => (f.StartAddress >> 8) & 0xFF);
                 case TableType.StartAddressLow:
                     return fileList.Select(f => f.StartAddress & 0xFF);
+                case TableType.NameNumber:
+                    return fileList.Select(f =>
+                    {
+                        var result = 0;
+                        for (var i = table.Index; i < f.Name.Count; i++)
+                        {
+                            var value = f.Name[i];
+                            if (!(value >= 0x30 && value <= 0x39))
+                                break;
+                            result *= 10;
+                            result += value & 0xF;
+                        }
+
+                        return result;
+                    });
                 default:
                     return Enumerable.Empty<int>();
             }

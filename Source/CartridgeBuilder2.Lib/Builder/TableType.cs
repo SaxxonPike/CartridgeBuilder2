@@ -16,6 +16,7 @@ namespace CartridgeBuilder2.Lib.Builder
         OffsetMatch,
         BankStart,
         BankStop,
-        Compressed
+        Compressed,
+        NameNumber
     }
 }

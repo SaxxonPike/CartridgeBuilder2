@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using CartridgeBuilder2.Cli.Configuration;
 using CartridgeBuilder2.Cli.Infrastructure;
 using CartridgeBuilder2.Lib.Builder;
@@ -70,7 +72,14 @@ namespace CartridgeBuilder2.Cli
             _logger.Info("Packing files");
             _timekeeper.Start();
             var packed = _romBuilder.Build(mappedConfig);
-            
+
+            using (var outStream = _fileSystem.OpenWrite(outputPath + ".raw"))
+            {
+                _logger.Info($"Writing {outputPath}.raw");
+                var writer = new BinaryWriter(outStream);
+                writer.Write(packed.Rom.Data.ToArray());
+            }
+
             _logger.Info("Building chips");
             var chips = _romChipExporter.Export(packed.Rom);
 
