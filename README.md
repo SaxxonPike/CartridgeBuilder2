@@ -95,7 +95,8 @@ tables to include when generating cartridge images.
 - `LoadAddressHigh`: high 8 bits of the load address.
 - `LengthLow`: low 8 bits of the data length.
 - `LengthHigh`: high 8 bits of the data length.
-- `OffsetReset`: see the Bank Wrapping section for more info.
+- `OffsetReset`/`BankStart`: see the Bank Wrapping section for more info.
+- `OffsetMatch`/`BankStop`: see the Bank Wrapping section for more info.
 - `Compressed`: determines the compression type.
 
 ##### Bank wrapping

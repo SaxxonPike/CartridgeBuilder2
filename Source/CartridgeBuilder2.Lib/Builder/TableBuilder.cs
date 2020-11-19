@@ -50,7 +50,11 @@ namespace CartridgeBuilder2.Lib.Builder
                 case TableType.OffsetLow:
                     return fileList.Select(f => f.StartAddress & 0xFF);
                 case TableType.OffsetReset:
+                case TableType.BankStart:
                     return fileList.Select(f => f.WrapStrategy == WrapStrategy.High ? 0xA0 : 0x80);
+                case TableType.OffsetMatch:
+                case TableType.BankStop:
+                    return fileList.Select(f => f.WrapStrategy != WrapStrategy.Low ? 0xC0 : 0xA0);
                 case TableType.StartAddressHigh:
                     return fileList.Select(f => (f.StartAddress >> 8) & 0xFF);
                 case TableType.StartAddressLow:

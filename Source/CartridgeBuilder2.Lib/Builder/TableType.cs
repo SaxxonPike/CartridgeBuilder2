@@ -13,6 +13,9 @@ namespace CartridgeBuilder2.Lib.Builder
         LengthLow,
         LengthHigh,
         OffsetReset,
+        OffsetMatch,
+        BankStart,
+        BankStop,
         Compressed
     }
 }
