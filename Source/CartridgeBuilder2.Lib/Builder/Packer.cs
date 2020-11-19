@@ -94,7 +94,7 @@ namespace CartridgeBuilder2.Lib.Builder
             {
                 CompressionMethod = allocation.CompressionMethod,
                 Length = allocation.Length,
-                Offset = indices.First(),
+                Offset = allocation.Length < 1 ? 0 : indices.First(),
                 WrapStrategy = allocation.WrapStrategy
             };
         }

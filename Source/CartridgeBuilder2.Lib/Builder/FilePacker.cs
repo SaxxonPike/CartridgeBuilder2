@@ -13,17 +13,20 @@ namespace CartridgeBuilder2.Lib.Builder
         private readonly IHashProvider _hashProvider;
         private readonly IPacker _packer;
         private readonly IAddressGenerator _addressGenerator;
+        private readonly IStringConverter _stringConverter;
 
         public FilePacker(
             ILogger logger, 
             IHashProvider hashProvider, 
             IPacker packer,
-            IAddressGenerator addressGenerator)
+            IAddressGenerator addressGenerator,
+            IStringConverter stringConverter)
         {
             _logger = logger;
             _hashProvider = hashProvider;
             _packer = packer;
             _addressGenerator = addressGenerator;
+            _stringConverter = stringConverter;
         }
 
         /// <inheritdoc />
@@ -34,6 +37,7 @@ namespace CartridgeBuilder2.Lib.Builder
             
             foreach (var file in files)
             {
+                _logger.Info($"Packing {_stringConverter.ConvertToString(file.Name)}");
                 var loadAddress = file.LoadAddress;
                 var fileData = file.Data.AsArray();
                 if (loadAddress == null)
