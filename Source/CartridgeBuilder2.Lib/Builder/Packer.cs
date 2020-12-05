@@ -32,7 +32,7 @@ namespace CartridgeBuilder2.Lib.Builder
         }
 
         /// <inheritdoc />
-        public IAllocation Write(IRomSpace romSpace, IEnumerable<byte> data, IAllocation allocation, OverwriteRule overwriteRule)
+        public IAllocation Write(IRomSpace romSpace, byte[] data, IAllocation allocation, OverwriteRule overwriteRule)
         {
             if (romSpace == null)
                 throw new ArgumentNullException(nameof(romSpace));
@@ -40,16 +40,17 @@ namespace CartridgeBuilder2.Lib.Builder
                 throw new ArgumentNullException(nameof(data));
             if (allocation == null)
                 throw new ArgumentNullException(nameof(allocation));
-            
+
+            var span = data.AsSpan();
             var generate = _indexGeneratorFactory.CreateGenerator(allocation.WrapStrategy);
             var workspaceData = romSpace.Data;
             var used = romSpace.Usage;
             var inputOffset = 0;
             var inputData = allocation.Length == null 
-                ? data.AsArray() 
-                : data.Take(allocation.Length.Value).AsArray();
+                ? span
+                : span.Slice(0, allocation.Length.Value);
             var totalLength = allocation.Length ?? inputData.Length;
-            var indices = generate(allocation.Offset, workspaceData.Count).Take(totalLength).AsArray();
+            var indices = generate(allocation.Offset, workspaceData.Length).Take(totalLength).AsArray();
 
             if (indices.Length < allocation.Length)
                 throw new CartridgeBuilderException($"Not enough space to write {allocation.Length} bytes at {allocation.Offset}");
@@ -148,7 +149,7 @@ namespace CartridgeBuilder2.Lib.Builder
             if (size == 0)
                 return new Allocation {Offset = 0, Length = 0, WrapStrategy = WrapStrategy.Both};
             
-            return generate(minimum, romSpace.Data.Count - size)
+            return generate(minimum, romSpace.Data.Length - size)
                 .Where(i =>
                 {
                     if (i < minimum)
@@ -156,7 +157,7 @@ namespace CartridgeBuilder2.Lib.Builder
                     if (used[i] != UsageType.Unused)
                         return false;
                     
-                    var check = generate(i + 1, romSpace.Data.Count)
+                    var check = generate(i + 1, romSpace.Data.Length)
                         .Take(size - 1)
                         .TakeWhile(j => used[j] == UsageType.Unused)
                         .AsCollection();

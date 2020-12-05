@@ -32,7 +32,7 @@ namespace CartridgeBuilder2.Lib.Crt
             var fileId = _stringConverter.ConvertToBytes(CrtConstants.FileId);
             writer.Write(fileId);
 
-            var headerLength = _byteSwapper.Swap(0x40 + crtInfo.ExtraData.Count);
+            var headerLength = _byteSwapper.Swap(0x40 + crtInfo.ExtraData.Length);
             writer.Write(headerLength);
 
             var version = _byteSwapper.Swap(unchecked((ushort) crtInfo.Version));
@@ -48,8 +48,8 @@ namespace CartridgeBuilder2.Lib.Crt
             writer.Write(game);
 
             var reservedBuffer = new byte[6];
-            var reserved = crtInfo.ReservedData.Take(6).AsArray();
-            Array.Copy(reserved, reservedBuffer, reserved.Length);
+            var reserved = crtInfo.ReservedData.AsSpan().Slice(0, Math.Min(6, crtInfo.ReservedData.Length));
+            reserved.CopyTo(reservedBuffer);
             writer.Write(reservedBuffer);
 
             var name = _stringConverter.ConvertToBytes(crtInfo.Name, 0x20, 0x00);

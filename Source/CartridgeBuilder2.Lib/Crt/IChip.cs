@@ -7,7 +7,7 @@ namespace CartridgeBuilder2.Lib.Crt
         int Type { get; }
         int Bank { get; }
         int Address { get; }
-        IList<byte> Rom { get; }
-        IList<byte> ExtraData { get; }
+        byte[] Rom { get; }
+        byte[] ExtraData { get; }
     }
 }

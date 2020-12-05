@@ -39,13 +39,12 @@ namespace CartridgeBuilder2.Lib.Crt
                     Hardware = _byteSwapper.Swap(headerReader.ReadUInt16()),
                     ExromPin = headerReader.ReadByte() != 0,
                     GamePin = headerReader.ReadByte() != 0,
-                    ReservedData = headerReader.ReadBytes(6).ToList(),
+                    ReservedData = headerReader.ReadBytes(6),
                     Name = isLongForm
                         ? new string(headerReader.ReadChars(0x20))
                         : string.Empty,
                     ExtraData = headerReader
                         .ReadBytes(headerLength - (isLongForm ? 0x40 : 0x20))
-                        .ToList()
                 };
             }
         }

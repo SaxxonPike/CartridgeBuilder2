@@ -18,7 +18,7 @@ namespace CartridgeBuilder2.Lib.Builder
         public IAllocation GenerateFromPatch(IPatch patch) => new Allocation
         {
             Offset = patch.Bank * 0x4000 + patch.Offset,
-            Length = patch.Data.Count,
+            Length = patch.Data.Length,
             WrapStrategy = patch.WrapStrategy
         };
     }

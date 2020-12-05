@@ -20,7 +20,7 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             output.Should().BeEquivalentTo(new Allocation
             {
                 CompressionMethod = default(CompressionMethod),
-                Length = patch.Data.Count,
+                Length = patch.Data.Length,
                 Offset = patch.Offset + patch.Bank * 0x4000,
                 WrapStrategy = patch.WrapStrategy
             });

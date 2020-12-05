@@ -10,7 +10,7 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <summary>
         /// Raw ROM data.
         /// </summary>
-        IList<byte> Data { get; }
+        byte[] Data { get; }
         
         /// <summary>
         /// Describes how each byte of ROM is allocated.

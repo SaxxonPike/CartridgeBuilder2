@@ -77,7 +77,7 @@ namespace CartridgeBuilder2.Cli
             {
                 _logger.Info($"Writing {outputPath}.raw");
                 var writer = new BinaryWriter(outStream);
-                writer.Write(packed.Rom.Data.ToArray());
+                writer.Write(packed.Rom.Data);
             }
 
             _logger.Info("Building chips");

@@ -12,7 +12,7 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <inheritdoc />
         public int Offset { get; set; }
         /// <inheritdoc />
-        public IList<byte> Data { get; set; }
+        public byte[] Data { get; set; }
         /// <inheritdoc />
         public WrapStrategy WrapStrategy { get; set; }
         /// <inheritdoc />

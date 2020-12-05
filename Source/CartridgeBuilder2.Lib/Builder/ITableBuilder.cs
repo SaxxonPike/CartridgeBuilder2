@@ -10,6 +10,6 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <summary>
         /// Build a table using the specified table configuration and file table.
         /// </summary>
-        IList<byte> Build(ITable table, IEnumerable<IPackedFile> files);
+        byte[] Build(ITable table, IEnumerable<IPackedFile> files);
     }
 }

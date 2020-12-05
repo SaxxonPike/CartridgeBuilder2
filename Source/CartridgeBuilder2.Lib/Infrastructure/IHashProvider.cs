@@ -15,6 +15,6 @@ namespace CartridgeBuilder2.Lib.Infrastructure
         /// <summary>
         /// Hash some data.
         /// </summary>
-        IList<byte> GetHash(IEnumerable<byte> data);
+        byte[] GetHash(IEnumerable<byte> data);
     }
 }

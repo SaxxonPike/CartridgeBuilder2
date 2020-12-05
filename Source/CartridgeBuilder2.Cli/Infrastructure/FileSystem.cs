@@ -42,9 +42,9 @@ namespace CartridgeBuilder2.Cli.Infrastructure
         }
 
         /// <inheritdoc />
-        public void WriteAllBytes(string path, IEnumerable<byte> data)
+        public void WriteAllBytes(string path, byte[] data)
         {
-            File.WriteAllBytes(path, data.AsArray());
+            File.WriteAllBytes(path, data);
         }
     }
 }

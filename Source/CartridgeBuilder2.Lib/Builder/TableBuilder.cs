@@ -8,7 +8,7 @@ namespace CartridgeBuilder2.Lib.Builder
     [Service]
     public class TableBuilder : ITableBuilder
     {
-        public IList<byte> Build(ITable table, IEnumerable<IPackedFile> files)
+        public byte[] Build(ITable table, IEnumerable<IPackedFile> files)
         {
             var values = BuildTableInternal(table, files)
                 .Select(i =>
@@ -81,7 +81,7 @@ namespace CartridgeBuilder2.Lib.Builder
                     return fileList.Select(f =>
                     {
                         var result = 0;
-                        for (var i = table.Index; i < f.Name.Count; i++)
+                        for (var i = table.Index; i < f.Name.Length; i++)
                         {
                             var value = f.Name[i];
                             if (!(value >= 0x30 && value <= 0x39))

@@ -33,7 +33,7 @@ namespace CartridgeBuilder2.Lib.Infrastructure
         }
 
         /// <inheritdoc />
-        public IList<byte> GetHash(IEnumerable<byte> data)
+        public byte[] GetHash(IEnumerable<byte> data)
         {
             return _hashAlgorithm.ComputeHash(data.AsArray());
         }

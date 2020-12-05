@@ -7,7 +7,7 @@ namespace CartridgeBuilder2.Lib.Crt
         public int Type { get; set; }
         public int Bank { get; set; }
         public int Address { get; set; }
-        public IList<byte> Rom { get; set; }
-        public IList<byte> ExtraData { get; set; }
+        public byte[] Rom { get; set; }
+        public byte[] ExtraData { get; set; }
     }
 }

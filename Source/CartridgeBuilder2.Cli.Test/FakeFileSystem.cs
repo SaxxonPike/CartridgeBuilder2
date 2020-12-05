@@ -36,9 +36,9 @@ namespace CartridgeBuilder2.Cli.Test
             return _streams[path.ToLowerInvariant()].ToArray();
         }
 
-        public void WriteAllBytes(string path, IEnumerable<byte> data)
+        public void WriteAllBytes(string path, byte[] data)
         {
-            _streams[path.ToLowerInvariant()] = new MemoryStream(data.ToArray());
+            _streams[path.ToLowerInvariant()] = new MemoryStream(data);
         }
     }
 }

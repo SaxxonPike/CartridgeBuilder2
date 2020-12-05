@@ -8,7 +8,7 @@ namespace CartridgeBuilder2.Lib.Builder
     public class PackedFile : IPackedFile
     {
         /// <inheritdoc/>
-        public IList<byte> Name { get; set; }
+        public byte[] Name { get; set; }
         /// <inheritdoc/>
         public int? LoadAddress { get; set; }
         /// <inheritdoc/>

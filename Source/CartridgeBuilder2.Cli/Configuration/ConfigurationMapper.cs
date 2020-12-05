@@ -49,7 +49,7 @@ namespace CartridgeBuilder2.Cli.Configuration
                 Fills = config.Fills.Select(f => new Fill
                 {
                     Bank = f.Bank,
-                    Data = f.Bytes.ToList(),
+                    Data = f.Bytes,
                     Length = f.Length,
                     Offset = f.Offset,
                     WrapStrategy = f.WrapStrategy,

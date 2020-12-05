@@ -21,7 +21,7 @@ namespace CartridgeBuilder2.Lib.Infrastructure
             return enumerable as T[] ?? enumerable.ToArray();
         }
 
-        public static IEnumerable<IList<T>> Paginate<T>(this IEnumerable<T> enumerable, int pageSize)
+        public static IEnumerable<T[]> Paginate<T>(this IEnumerable<T> enumerable, int pageSize)
         {
             var buffer = new T[pageSize];
             var count = 0;

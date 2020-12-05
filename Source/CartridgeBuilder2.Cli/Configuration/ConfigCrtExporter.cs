@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CartridgeBuilder2.Lib.Crt;
 using CartridgeBuilder2.Lib.Infrastructure;
@@ -16,11 +17,11 @@ namespace CartridgeBuilder2.Cli.Configuration
                 Info = new CrtInfo
                 {
                     ExromPin = config.Exrom,
-                    ExtraData = new List<byte>(),
+                    ExtraData = Array.Empty<byte>(),
                     GamePin = config.Game,
                     Hardware = config.Hardware,
                     Name = config.Name,
-                    ReservedData = new List<byte>(),
+                    ReservedData = Array.Empty<byte>(),
                     Version = 0x0100
                 }
             };

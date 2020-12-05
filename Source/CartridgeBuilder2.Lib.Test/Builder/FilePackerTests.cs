@@ -32,7 +32,7 @@ namespace CartridgeBuilder2.Lib.Test.Builder
             {
                 mock.Setup(x => x.Fit(It.IsAny<IRomSpace>(), It.IsAny<int>()))
                     .Returns(fitOutput);
-                mock.Setup(x => x.Write(It.IsAny<IRomSpace>(), It.IsAny<IEnumerable<byte>>(), It.IsAny<IAllocation>(), It.IsAny<OverwriteRule>()))
+                mock.Setup(x => x.Write(It.IsAny<IRomSpace>(), It.IsAny<byte[]>(), It.IsAny<IAllocation>(), It.IsAny<OverwriteRule>()))
                     .Returns(writeOutput);
             });
 

@@ -10,7 +10,7 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <summary>
         /// Name of the file.
         /// </summary>
-        IList<byte> Name { get; }
+        byte[] Name { get; }
         
         /// <summary>
         /// Load address for the file.

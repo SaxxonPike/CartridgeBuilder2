@@ -27,7 +27,7 @@ namespace CartridgeBuilder2.Lib.Crt
             var chipId = CrtConstants.ChipId;
             writer.Write(chipId);
 
-            var length = _byteSwapper.Swap((chip.Rom?.Count ?? 0) + 0x10 + (chip.ExtraData?.Count ?? 0));
+            var length = _byteSwapper.Swap((chip.Rom?.Length ?? 0) + 0x10 + (chip.ExtraData?.Length ?? 0));
             writer.Write(length);
 
             var chipType = _byteSwapper.Swap(unchecked((ushort) chip.Type));
@@ -39,7 +39,7 @@ namespace CartridgeBuilder2.Lib.Crt
             var chipAddress = _byteSwapper.Swap(unchecked((ushort) chip.Address));
             writer.Write(chipAddress);
 
-            var chipRomLength = _byteSwapper.Swap(unchecked((ushort) (chip.Rom?.Count ?? 0)));
+            var chipRomLength = _byteSwapper.Swap(unchecked((ushort) (chip.Rom?.Length ?? 0)));
             writer.Write(chipRomLength);
 
             if (chip.ExtraData != null)

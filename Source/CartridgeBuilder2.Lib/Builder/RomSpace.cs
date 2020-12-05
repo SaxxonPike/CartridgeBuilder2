@@ -16,7 +16,7 @@ namespace CartridgeBuilder2.Lib.Builder
         }
 
         /// <inheritdoc/>
-        public IList<byte> Data { get; }
+        public byte[] Data { get; }
         /// <inheritdoc/>
         public IList<UsageType> Usage { get; }
         /// <inheritdoc/>

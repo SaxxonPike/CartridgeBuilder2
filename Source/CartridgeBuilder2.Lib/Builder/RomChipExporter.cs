@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CartridgeBuilder2.Lib.Crt;
 using CartridgeBuilder2.Lib.Infrastructure;
@@ -32,7 +33,7 @@ namespace CartridgeBuilder2.Lib.Builder
                 {
                     Address = _addressGenerator.GetAddress(offset),
                     Bank = _addressGenerator.GetBank(offset),
-                    ExtraData = new byte[0],
+                    ExtraData = Array.Empty<byte>(),
                     Rom = romPages[i],
                     Type = 0
                 };

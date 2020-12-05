@@ -47,7 +47,7 @@ namespace CartridgeBuilder2.Lib.Infrastructure
                 length = i + 1;
                 break;
             }
-            return Encoding.GetString(value.Take(length).ToArray());
+            return Encoding.GetString(value, 0, length);
         }
     }
 }

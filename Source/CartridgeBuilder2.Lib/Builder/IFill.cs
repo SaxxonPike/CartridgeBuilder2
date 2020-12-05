@@ -10,7 +10,7 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <summary>
         /// Data bytes in the pattern.
         /// </summary>
-        IList<byte> Data { get; }
+        byte[] Data { get; }
         
         /// <summary>
         /// Length of the patch.

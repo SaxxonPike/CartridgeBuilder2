@@ -10,6 +10,6 @@ namespace CartridgeBuilder2.Cli.Infrastructure
         Stream OpenRead(string path);
         Stream OpenWrite(string path);
         byte[] ReadAllBytes(string path);
-        void WriteAllBytes(string path, IEnumerable<byte> data);
+        void WriteAllBytes(string path, byte[] data);
     }
 }

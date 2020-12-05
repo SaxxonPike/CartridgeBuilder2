@@ -20,7 +20,7 @@ namespace CartridgeBuilder2.Lib.Builder
         /// <summary>
         /// Patch binary data.
         /// </summary>
-        IList<byte> Data { get; }
+        byte[] Data { get; }
         
         /// <summary>
         /// Bank wrapping strategy.

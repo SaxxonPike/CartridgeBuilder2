@@ -4,7 +4,7 @@ namespace CartridgeBuilder2.Lib.Builder
 {
     public class Fill : IFill
     {
-        public IList<byte> Data { get; set; }
+        public byte[] Data { get; set; }
         public int Length { get; set; }
         public int Offset { get; set; }
         public WrapStrategy WrapStrategy { get; set; }

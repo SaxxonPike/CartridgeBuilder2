@@ -8,8 +8,8 @@ namespace CartridgeBuilder2.Lib.Crt
         int Hardware { get; }
         bool ExromPin { get; }
         bool GamePin { get; }
-        IList<byte> ExtraData { get; }
-        IList<byte> ReservedData { get; }
+        byte[] ExtraData { get; }
+        byte[] ReservedData { get; }
         string Name { get; }
     }
 }
