@@ -5,6 +5,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 
 namespace CartridgeBuilder2.Cli.Infrastructure
 {
+    [Service(typeof(IFileSystem))]
     public class FileSystem : IFileSystem
     {
         /// <inheritdoc />

@@ -5,7 +5,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 
 namespace CartridgeBuilder2.Lib.Crt
 {
-    [Service]
+    [Service(typeof(ICrtFileDecoder))]
     public class CrtFileDecoder : ICrtFileDecoder
     {
         private readonly ICrtChipDecoder _crtChipDecoder;

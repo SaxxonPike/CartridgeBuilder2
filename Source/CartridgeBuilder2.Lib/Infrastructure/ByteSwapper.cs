@@ -1,6 +1,6 @@
 ﻿namespace CartridgeBuilder2.Lib.Infrastructure
 {
-    [Service]
+    [Service(typeof(IByteSwapper))]
     public class ByteSwapper : IByteSwapper
     {
         public short Swap(short value)

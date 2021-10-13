@@ -5,7 +5,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 
 namespace CartridgeBuilder2.Lib.Crt
 {
-    [Service]
+    [Service(typeof(ICrtInfoEncoder))]
     public class CrtInfoEncoder : ICrtInfoEncoder
     {
         private readonly IByteSwapper _byteSwapper;

@@ -6,7 +6,7 @@ using CartridgeBuilder2.Lib.Prg;
 namespace CartridgeBuilder2.Lib.Builder
 {
     /// <inheritdoc />
-    [Service]
+    [Service(typeof(IFilePacker))]
     public class FilePacker : IFilePacker
     {
         private readonly ILogger _logger;

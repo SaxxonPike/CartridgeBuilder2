@@ -7,9 +7,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.1.0" />
+    <ProjectReference Include="..\CartridgeBuilder2.Lib\CartridgeBuilder2.Lib.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CartridgeBuilder2.Lib\CartridgeBuilder2.Lib.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+    <PackageReference Include="System.Text.Json" Version="5.0.2" />
   </ItemGroup>
 </Project>

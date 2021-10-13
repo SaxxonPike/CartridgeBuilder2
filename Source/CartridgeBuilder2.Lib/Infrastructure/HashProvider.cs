@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 namespace CartridgeBuilder2.Lib.Infrastructure
 {
     /// <inheritdoc />
-    [Service]
+    [Service(typeof(IHashProvider))]
     public class HashProvider : IHashProvider
     {
         private readonly HashAlgorithm _hashAlgorithm;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CartridgeBuilder2.Lib.Infrastructure
 {
-    [Service]
+    [Service(typeof(IStringConverter))]
     public class StringConverter : IStringConverter
     {
         // Using ISO-8859-1 encoding ensures all 256 bytes are mapped to equivalent to unicode values

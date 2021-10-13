@@ -3,7 +3,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 
 namespace CartridgeBuilder2.Cli.Infrastructure
 {
-    [Service]
+    [Service(typeof(ITimekeeper))]
     public class Timekeeper : Stopwatch, ITimekeeper
     {
     }

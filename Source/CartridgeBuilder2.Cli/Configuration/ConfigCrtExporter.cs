@@ -6,7 +6,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 
 namespace CartridgeBuilder2.Cli.Configuration
 {
-    [Service]
+    [Service(typeof(IConfigCrtExporter))]
     public class ConfigCrtExporter : IConfigCrtExporter
     {
         public ICrtFile Export(BuilderConfig config, IEnumerable<IChip> chips)

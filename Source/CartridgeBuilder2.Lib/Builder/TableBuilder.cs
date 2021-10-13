@@ -5,7 +5,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 
 namespace CartridgeBuilder2.Lib.Builder
 {
-    [Service]
+    [Service(typeof(ITableBuilder))]
     public class TableBuilder : ITableBuilder
     {
         public byte[] Build(ITable table, IEnumerable<IPackedFile> files)

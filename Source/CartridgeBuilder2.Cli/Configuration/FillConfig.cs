@@ -1,22 +1,24 @@
-﻿using CartridgeBuilder2.Lib.Builder;
-using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using CartridgeBuilder2.Lib.Builder;
 
 namespace CartridgeBuilder2.Cli.Configuration
 {
     public class FillConfig
     {
-        [JsonRequired]
+        [Required]
         public int Bank { get; set; }
 
-        [JsonRequired]
+        [Required]
         public int Offset { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public WrapStrategy WrapStrategy { get; set; }
 
-        [JsonRequired]
+        [Required]
         public byte[] Bytes { get; set; }
         
-        [JsonRequired]
+        [Required]
         public int Length { get; set; } 
         
         public bool Dedupe { get; set; }

@@ -6,6 +6,7 @@ using CartridgeBuilder2.Lib.Prg;
 
 namespace CartridgeBuilder2.Cli.Configuration
 {
+    [Service(typeof(IConfigurationMapper))]
     public class ConfigurationMapper : IConfigurationMapper
     {
         private readonly IFileSystem _fileSystem;

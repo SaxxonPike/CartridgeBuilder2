@@ -9,6 +9,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 
 namespace CartridgeBuilder2.Cli
 {
+    [Service(typeof(IApp))]
     public class App : IApp
     {
         private readonly IConfigurationImporter _configurationImporter;

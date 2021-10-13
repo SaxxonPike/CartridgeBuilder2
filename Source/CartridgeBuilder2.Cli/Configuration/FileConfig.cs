@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CartridgeBuilder2.Cli.Configuration
 {
     public class FileConfig
     {
-        [JsonRequired]
+        [Required]
         public string Path { get; set; }
 
         public string Name { get; set; }

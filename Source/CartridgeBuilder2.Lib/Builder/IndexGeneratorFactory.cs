@@ -6,7 +6,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 namespace CartridgeBuilder2.Lib.Builder
 {
     /// <inheritdoc/>
-    [Service]
+    [Service(typeof(IIndexGeneratorFactory))]
     public class IndexGeneratorFactory : IIndexGeneratorFactory
     {
         /// <inheritdoc/>

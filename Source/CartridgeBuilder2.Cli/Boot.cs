@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using Autofac;
+using System.IO;
+using CartridgeBuilder2.Lib;
 using CartridgeBuilder2.Lib.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CartridgeBuilder2.Cli
 {
@@ -9,9 +11,14 @@ namespace CartridgeBuilder2.Cli
     {
         private static void Main(string[] args)
         {
-            var container = BuildContainer();
-            var app = container.Resolve<App>();
-            var logger = container.Resolve<ILogger>();
+            var builder = new ServiceCollection();
+            builder.AddCartridgeBuilderLib();
+            builder.AddCartridgeBuilderCli();
+            builder.AddSingleton(typeof(TextWriter), Console.Out);
+            var container = builder.BuildServiceProvider();
+            
+            var app = container.GetService<IApp>();
+            var logger = container.GetService<ILogger>();
 
             if (Debugger.IsAttached)
                 app.Run(args);
@@ -25,16 +32,6 @@ namespace CartridgeBuilder2.Cli
                     logger.Error($"An exception of type {e.GetType().Name} was thrown:");
                     logger.Error(e.ToString());
                 }
-        }
-
-        private static IContainer BuildContainer()
-        {
-            var builder = new ContainerBuilder();
-            builder.RegisterInstance(Console.Out);
-            builder.RegisterModule<InfrastructureAutofacModule>();
-            builder.RegisterModule<AppAutofacModule>();
-            
-            return builder.Build();
         }
     }
 }

@@ -9,5 +9,11 @@ namespace CartridgeBuilder2.Lib.Infrastructure
     [AttributeUsage(AttributeTargets.Class)]
     public class ServiceAttribute : Attribute
     {
+        public ServiceAttribute(Type iface)
+        {
+            Interface = iface;
+        }
+
+        public Type Interface { get; }
     }
 }

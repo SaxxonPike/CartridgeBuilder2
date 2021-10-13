@@ -1,21 +1,22 @@
-﻿using CartridgeBuilder2.Lib.Builder;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using CartridgeBuilder2.Lib.Builder;
 
 namespace CartridgeBuilder2.Cli.Configuration
 {
     public class TableConfig
     {
-        [JsonRequired]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [Required]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public TableType Type { get; set; }
 
-        [JsonRequired]
+        [Required]
         public int Bank { get; set; }
 
-        [JsonRequired]
+        [Required]
         public int Offset { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public WrapStrategy WrapStrategy { get; set; }
 
         public int Index { get; set; }
@@ -24,6 +25,7 @@ namespace CartridgeBuilder2.Cli.Configuration
         
         public int? Mask { get; set; }
         
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public CaseType? Case { get; set; }
     }
 }

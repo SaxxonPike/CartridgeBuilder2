@@ -24,21 +24,21 @@ namespace CartridgeBuilder2.Cli.Test.Integration
                 Files = Build<FileConfig>().With(x => x.Path, fileName).CreateMany().ToArray(),
                 Tables = new List<TableConfig>
                 {
-                    new TableConfig
+                    new()
                     {
                         Bank = 0,
                         Type = TableType.StartAddressLow,
                         Offset = 0x0000,
                         Length = 0x20
                     },
-                    new TableConfig
+                    new()
                     {
                         Bank = 0,
                         Type = TableType.StartAddressHigh,
                         Offset = 0x0020,
                         Length = 0x20
                     },
-                    new TableConfig
+                    new()
                     {
                         Bank = 0,
                         Type = TableType.Bank,

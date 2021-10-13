@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using CartridgeBuilder2.Cli.Configuration;
 using CartridgeBuilder2.Lib.Builder;
@@ -25,8 +26,8 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             // Arrange.
             var config = TextStream(new
             {
-                Files = new object[0],
-                Partitions = new object[0]
+                Files = Array.Empty<object>(),
+                Partitions = Array.Empty<object>()
             });
 
             // Act.
@@ -46,8 +47,8 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var outputFile = Create<string>();
             var config = TextStream(new
             {
-                Files = new object[0],
-                Partitions = new object[0],
+                Files = Array.Empty<object>(),
+                Partitions = Array.Empty<object>(),
                 OutputFile = outputFile
             });
 
@@ -69,7 +70,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
                 {
                     new {Path = path}
                 },
-                Partitions = new string[0]
+                Partitions = Array.Empty<string>()
             });
 
             // Act.
@@ -95,7 +96,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
                 {
                     new {Path = path, Name = name, LoadAddress = loadAddress}
                 },
-                Partitions = new string[0]
+                Partitions = Array.Empty<string>()
             });
 
             // Act.
@@ -117,13 +118,13 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var path = Create<string>();
             var config = TextStream(new
             {
-                Files = new object[0],
-                Partitions = new object[0],
+                Files = Array.Empty<object>(),
+                Partitions = Array.Empty<object>(),
                 Patches = new[]
                 {
                     new {Bank = bank, Offset = offset, Path = path}
                 },
-                Fills = new object[0]
+                Fills = Array.Empty<object>()
             });
 
             // Act.
@@ -144,13 +145,13 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var wrapStrategy = Create<WrapStrategy>();
             var config = TextStream(new
             {
-                Files = new object[0],
-                Partitions = new object[0],
+                Files = Array.Empty<object>(),
+                Partitions = Array.Empty<object>(),
                 Patches = new[]
                 {
                     new {Bank = bank, Offset = offset, Path = path, WrapStrategy = wrapStrategy.ToString()}
                 },
-                Fills = new object[0]
+                Fills = Array.Empty<object>()
             });
 
             // Act.
@@ -173,13 +174,13 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var type = Create<TableType>();
             var config = TextStream(new
             {
-                Files = new object[0],
-                Partitions = new object[0],
+                Files = Array.Empty<object>(),
+                Partitions = Array.Empty<object>(),
                 Tables = new[]
                 {
                     new {Bank = bank, Offset = offset, Type = type}
                 },
-                Fills = new object[0]
+                Fills = Array.Empty<object>()
             });
 
             // Act.
@@ -202,13 +203,13 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var wrapStrategy = Create<WrapStrategy>();
             var config = TextStream(new
             {
-                Files = new object[0],
-                Partitions = new object[0],
+                Files = Array.Empty<object>(),
+                Partitions = Array.Empty<object>(),
                 Tables = new[]
                 {
                     new {Bank = bank, Offset = offset, Type = type, Index = index, WrapStrategy = wrapStrategy.ToString()}
                 },
-                Fills = new object[0]
+                Fills = Array.Empty<object>()
             });
 
             // Act.
@@ -233,9 +234,9 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var length = Create<int>();
             var config = TextStream(new
             {
-                Files = new object[0],
-                Partitions = new object[0],
-                Patches = new object[0],
+                Files = Array.Empty<object>(),
+                Partitions = Array.Empty<object>(),
+                Patches = Array.Empty<object>(),
                 Fills = new[]
                 {
                     new {Bank = bank, Offset = offset, Bytes = bytes, Length = length}
@@ -261,9 +262,9 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             var length = Create<int>();
             var config = TextStream(new
             {
-                Files = new object[0],
-                Partitions = new object[0],
-                Patches = new object[0],
+                Files = Array.Empty<object>(),
+                Partitions = Array.Empty<object>(),
+                Patches = Array.Empty<object>(),
                 Fills = new[]
                 {
                     new {Bank = bank, Offset = offset, Bytes = bytes, WrapStrategy = wrapStrategy.ToString(), Length = length}

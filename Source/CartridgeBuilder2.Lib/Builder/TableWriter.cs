@@ -4,7 +4,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 namespace CartridgeBuilder2.Lib.Builder
 {
     /// <inheritdoc />
-    [Service]
+    [Service(typeof(ITableWriter))]
     public class TableWriter : ITableWriter
     {
         private readonly ILogger _logger;

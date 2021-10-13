@@ -5,7 +5,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 namespace CartridgeBuilder2.Lib.Builder
 {
     /// <inheritdoc/>
-    [Service]
+    [Service(typeof(IRomBuilder))]
     public class RomBuilder : IRomBuilder
     {
         private readonly ILogger _logger;

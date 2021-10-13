@@ -3,6 +3,7 @@
 namespace CartridgeBuilder2.Lib.Infrastructure
 {
     // ReSharper disable once ClassNeverInstantiated.Global
+    [Service(typeof(ILogger))]
     public class TextWriterLogger : ILogger
     {
         private readonly TextWriter _writer;

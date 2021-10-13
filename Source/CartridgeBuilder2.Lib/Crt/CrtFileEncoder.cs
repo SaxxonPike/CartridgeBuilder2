@@ -3,7 +3,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 
 namespace CartridgeBuilder2.Lib.Crt
 {
-    [Service]
+    [Service(typeof(ICrtFileEncoder))]
     public class CrtFileEncoder : ICrtFileEncoder
     {
         private readonly ICrtChipEncoder _crtChipEncoder;

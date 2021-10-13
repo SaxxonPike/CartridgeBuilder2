@@ -3,7 +3,7 @@
 namespace CartridgeBuilder2.Lib.Builder
 {
     /// <inheritdoc />
-    [Service]
+    [Service(typeof(IAllocationGenerator))]
     public class AllocationGenerator : IAllocationGenerator
     {
         /// <inheritdoc />

@@ -7,7 +7,7 @@ using CartridgeBuilder2.Lib.Infrastructure;
 namespace CartridgeBuilder2.Lib.Builder
 {
     /// <inheritdoc />
-    [Service]
+    [Service(typeof(IRomChipExporter))]
     public class RomChipExporter : IRomChipExporter
     {
         private readonly IAddressGenerator _addressGenerator;
