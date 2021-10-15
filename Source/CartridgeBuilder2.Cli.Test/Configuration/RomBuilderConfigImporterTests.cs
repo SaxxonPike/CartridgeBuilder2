@@ -230,7 +230,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             // Arrange.
             var bank = Create<int>();
             var offset = Create<int>();
-            var bytes = CreateMany<byte>();
+            var bytes = Create<byte>();
             var length = Create<int>();
             var config = TextStream(new
             {
@@ -239,7 +239,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
                 Patches = Array.Empty<object>(),
                 Fills = new[]
                 {
-                    new {Bank = bank, Offset = offset, Bytes = bytes, Length = length}
+                    new {Bank = bank, Offset = offset, Byte = bytes, Length = length}
                 }
             });
 

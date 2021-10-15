@@ -76,6 +76,8 @@ tables to include when generating cartridge images.
       - Length of data to generate.
     - `WrapStrategy` (see below)
       - Determines bank wrapping.
+    - `Byte`
+      - Sets a byte value to fill with.
 
 ##### Wrap strategies
 
