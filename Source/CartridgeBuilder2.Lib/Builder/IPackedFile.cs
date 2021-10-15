@@ -41,5 +41,10 @@ namespace CartridgeBuilder2.Lib.Builder
         /// Compression method used for the file data.
         /// </summary>
         CompressionMethod CompressionMethod { get; }
+
+        /// <summary>
+        /// Index of the file (according to the config)
+        /// </summary>
+        int Index { get; }
     }
 }

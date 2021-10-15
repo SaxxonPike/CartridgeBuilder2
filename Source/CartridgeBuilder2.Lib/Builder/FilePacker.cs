@@ -62,7 +62,7 @@ namespace CartridgeBuilder2.Lib.Builder
                         var existingFile = outHashes[existingHash];
                         _logger.Debug($"Deduplicating file at {existingFile.StartBank:X2}:{existingFile.StartAddress:X4}");
                     
-                        // Deduping copies all data except filename. This needs to be preserved.
+                        // Deduping copies all data except filename and index. This needs to be preserved.
                         outFiles.Add(new PackedFile
                         {
                             CompressionMethod = existingFile.CompressionMethod,
@@ -71,7 +71,8 @@ namespace CartridgeBuilder2.Lib.Builder
                             Name = file.Name.ToArray(),
                             StartAddress = existingFile.StartAddress,
                             StartBank = existingFile.StartBank,
-                            WrapStrategy = existingFile.WrapStrategy
+                            WrapStrategy = existingFile.WrapStrategy,
+                            Index = file.Index
                         });
 
                         continue;
@@ -92,7 +93,8 @@ namespace CartridgeBuilder2.Lib.Builder
                     Name = file.Name.ToArray(),
                     StartAddress = _addressGenerator.GetAddress(placement.Offset),
                     StartBank = _addressGenerator.GetBank(placement.Offset),
-                    WrapStrategy = placement.WrapStrategy
+                    WrapStrategy = placement.WrapStrategy,
+                    Index = file.Index
                 };
                 outFiles.Add(newFile);
                 

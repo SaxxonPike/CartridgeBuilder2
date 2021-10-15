@@ -77,6 +77,8 @@ namespace CartridgeBuilder2.Lib.Builder
                     return fileList.Select(f => (f.StartAddress >> 8) & 0xFF);
                 case TableType.StartAddressLow:
                     return fileList.Select(f => f.StartAddress & 0xFF);
+                case TableType.Index:
+                    return fileList.Select(f => f.Index & 0xFF);
                 case TableType.NameNumber:
                     return fileList.Select(f =>
                     {

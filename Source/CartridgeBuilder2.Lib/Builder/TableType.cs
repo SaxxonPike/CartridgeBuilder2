@@ -23,6 +23,7 @@ namespace CartridgeBuilder2.Lib.Builder
         BankStart,
         BankStop,
         Compressed,
-        NameNumber
+        NameNumber,
+        Index
     }
 }

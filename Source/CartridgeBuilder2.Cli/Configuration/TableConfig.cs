@@ -11,18 +11,23 @@ namespace CartridgeBuilder2.Cli.Configuration
         public TableType Type { get; set; }
 
         [Required]
+        [JsonConverter(typeof(HexNumberJsonConverter<int>))]
         public int Bank { get; set; }
 
         [Required]
+        [JsonConverter(typeof(HexNumberJsonConverter<int>))]
         public int Offset { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public WrapStrategy WrapStrategy { get; set; }
 
+        [JsonConverter(typeof(HexNumberJsonConverter<int>))]
         public int Index { get; set; }
         
+        [JsonConverter(typeof(HexNumberJsonConverter<int?>))]
         public int? Length { get; set; }
         
+        [JsonConverter(typeof(HexNumberJsonConverter<int?>))]
         public int? Mask { get; set; }
         
         [JsonConverter(typeof(JsonStringEnumConverter))]

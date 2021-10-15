@@ -8,5 +8,8 @@ namespace CartridgeBuilder2.Lib.Prg
         public byte[] Data { get; set; }
         public byte[] Name { get; set; }
         public bool Dedupe { get; set; }
+        
+        // not part of the config schema
+        public int Index { get; set; }
     }
 }

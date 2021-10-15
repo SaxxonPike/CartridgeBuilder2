@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using CartridgeBuilder2.Lib.Builder;
 
 namespace CartridgeBuilder2.Cli.Configuration
@@ -14,9 +15,10 @@ namespace CartridgeBuilder2.Cli.Configuration
 
         public bool Exrom { get; set; } = true;
         public bool Game { get; set; } = false;
+        [JsonConverter(typeof(HexNumberJsonConverter<int>))]
         public int Hardware { get; set; } = RomBuilderDefaults.HardwareId;
         public string Name { get; set; }
-
+        [JsonConverter(typeof(HexNumberJsonConverter<int?>))]
         public int? Capacity { get; set; } = RomBuilderDefaults.Capacity;
     }
 }

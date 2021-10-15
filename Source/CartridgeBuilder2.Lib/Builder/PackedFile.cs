@@ -21,5 +21,7 @@ namespace CartridgeBuilder2.Lib.Builder
         public int Length { get; set; }
         /// <inheritdoc/>
         public CompressionMethod CompressionMethod { get; set; }
+        /// <inheritdoc/>
+        public int Index { get; set; }
     }
 }

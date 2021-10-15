@@ -7,9 +7,11 @@ namespace CartridgeBuilder2.Cli.Configuration
     public class PatchConfig
     {
         [Required]
-        public int Bank { get; set; }
+        [JsonConverter(typeof(HexNumberJsonConverter<int?>))]
+        public int? Bank { get; set; }
 
         [Required]
+        [JsonConverter(typeof(HexNumberJsonConverter<int>))]
         public int Offset { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]

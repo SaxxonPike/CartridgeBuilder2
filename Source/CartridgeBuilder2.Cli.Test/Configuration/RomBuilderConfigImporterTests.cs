@@ -257,7 +257,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             // Arrange.
             var bank = Create<int>();
             var offset = Create<int>();
-            var bytes = CreateMany<byte>();
+            var bytes = Create<byte>();
             var wrapStrategy = Create<WrapStrategy>();
             var length = Create<int>();
             var config = TextStream(new
@@ -267,7 +267,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
                 Patches = Array.Empty<object>(),
                 Fills = new[]
                 {
-                    new {Bank = bank, Offset = offset, Bytes = bytes, WrapStrategy = wrapStrategy.ToString(), Length = length}
+                    new {Bank = bank, Offset = offset, Byte = bytes, WrapStrategy = wrapStrategy.ToString(), Length = length}
                 }
             });
 
@@ -278,7 +278,7 @@ namespace CartridgeBuilder2.Cli.Test.Configuration
             output.Fills.Should().HaveCount(1);
             output.Fills[0].Bank.Should().Be(bank);
             output.Fills[0].Offset.Should().Be(offset);
-            output.Fills[0].Bytes.Should().BeEquivalentTo(bytes);
+            output.Fills[0].Byte.Should().Be(bytes);
             output.Fills[0].WrapStrategy.Should().Be(wrapStrategy);
         }        
     }

@@ -31,8 +31,7 @@ namespace CartridgeBuilder2.Lib.Builder
             
             var tables = romBuilderConfiguration.Tables.Select(t =>
                 t ?? throw new CartridgeBuilderException("Table cannot be null.")).AsCollection();
-            var files = romBuilderConfiguration.Files.Select(f =>
-                f ?? throw new CartridgeBuilderException("File cannot be null."))
+            var files = romBuilderConfiguration.Files.Select(f => f ?? throw new CartridgeBuilderException("File cannot be null."))
                 .OrderByDescending(f => f.Data?.Length ?? 0)
                 .AsCollection();
             var patches = romBuilderConfiguration.Patches.Select(p =>
